@@ -1,0 +1,19 @@
+name: PR Timer
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+jobs:
+  pr-timer:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Start PR Timer
+        run: |
+          echo "PR #${{ github.event.pull_request.number }} timer started"
+          counter=0
+          while true; do
+            echo "Timer count for PR #${{ github.event.pull_request.number }}: $counter"
+            counter=$((counter + 1))
+            sleep 60  # Pause de 60 secondes
+          done
